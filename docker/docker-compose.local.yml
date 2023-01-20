@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  vending-machine-api:
+    container_name: api
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile.local.yml
+    ports:
+      - 3000:3000
+      - 9229:9229
+    depends_on:
+      - postgres
+    env_file:
+      - ../.env
+    networks:
+      - vending_api
+    volumes:
+      - ../:/app
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: pg_isready -U postgres -d postgres
+      interval: 2s
+      timeout: 3s
+      retries: 40
+    networks:
+      - vending_api
+
+volumes:
+  pgdata:
+    name: postgres
+
+networks:
+  vending_api:
+    driver: bridge
