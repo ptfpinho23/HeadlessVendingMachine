@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id              String   @id @default(uuid())
+  amountAvailable Int      @map("amount_available") @db.Integer
+  cost            Int      @map("cost") @db.Integer
+  productName     String   @unique @map("product_name") @db.VarChar(50)
+  dateCreated     DateTime @default(now()) @map("date_created") @db.Timestamp(3)
+  dateUpdated     DateTime @updatedAt @map("date_updated") @db.Timestamp(3)
+  seller          User     @relation(fields: [sellerId], references: [id])
+  sellerId        String
+  ledger          Ledger[]
+}
+
+model User {
+  id          String    @id @default(uuid())
+  username    String    @unique @map("username") @db.VarChar(50)
+  password    String    @map("password") @db.VarChar(1000)
+  deposits    Int       @default(0) @map("deposits") @db.Integer
+  role        Roles
+  dateCreated DateTime  @default(now()) @map("date_created") @db.Timestamp(3)
+  dateUpdated DateTime  @updatedAt @map("date_updated") @db.Timestamp(3)
+  Product     Product[]
+
+  @@map("user")
+}
+
+model Ledger {
+  id              String   @id @default(uuid())
+  product         Product  @relation(fields: [productId], references: [id])
+  productId       String
+  dateCreated     DateTime @default(now()) @map("date_created") @db.Timestamp(3)
+  deltaValue      Int      @map("delta_value")
+  operationSource String   @map("operation_source") @db.VarChar(50)
+  status          Status   @default(value: pending)
+}
+
+enum Roles {
+  buyer
+  seller
+}
+
+enum Status {
+  pending
+  paid
+  expired
+  failed
+}
