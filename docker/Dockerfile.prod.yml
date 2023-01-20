@@ -1,0 +1,58 @@
+FROM node:16 AS builder
+
+# Create app directory
+WORKDIR /app
+
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+COPY prisma ./prisma/
+
+# Install app dependencies
+RUN npm i -g npm@latest; \
+    # Install pnpm
+    npm install -g pnpm; \
+    pnpm --version; \
+    pnpm setup; \
+    mkdir -p /usr/local/share/pnpm &&\
+    export PNPM_HOME="/usr/local/share/pnpm" &&\
+    export PATH="$PNPM_HOME:$PATH"; \
+    pnpm bin -g &&\
+    # Install dependencies
+    pnpm install
+
+COPY . .
+
+RUN pnpm build
+
+FROM node:16
+
+ENV USER_ID=1001
+ENV GROUP_ID=1001
+ENV USER_NAME=api
+
+ENV npm_config_cache /home/node/.npm
+
+RUN addgroup \
+    --gid ${GROUP_ID} \
+    --system ${USER_NAME} && \
+    adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "$(pwd)" \
+    --ingroup ${USER_NAME} \
+    --uid ${USER_ID} \
+    ${USER_NAME}
+
+
+COPY --from=builder --chown=${USER_ID}:${GROUP_ID} /app/node_modules ./app/node_modules
+COPY --from=builder --chown=${USER_ID}:${GROUP_ID} /app/package*.json ./app/
+COPY --from=builder --chown=${USER_ID}:${GROUP_ID} /app/dist ./app/dist
+
+
+
+USER ${USER_NAME}
+
+WORKDIR /app
+
+ENTRYPOINT [ "npm", "run", "start:prod" ]
+
