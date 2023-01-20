@@ -12,7 +12,11 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "migrations:gen": "prisma migration dev",
+    "prisma:models:update": "prisma generate",
+    "prisma:schema:validate": "prisma validate",
+    "prisma:schema:format": "prisma format"
   },
   "keywords": [],
   "author": "",
@@ -22,9 +26,13 @@
     "@nestjs/core": "^9.2.1",
     "@nestjs/platform-express": "^9.2.1",
     "@nestjs/swagger": "^6.1.4",
+    "@prisma/client": "^4.9.0",
+    "@types/joi": "^17.2.3",
+    "joi": "^17.7.0",
     "nestjs": "^0.0.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.1.8",
