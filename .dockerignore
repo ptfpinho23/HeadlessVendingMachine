@@ -1,0 +1,7 @@
+.vscode
+dist
+docker
+node_modules/
+.husky
+pnpm-debug.log*
+npm-debug.log*
