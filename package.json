@@ -4,7 +4,8 @@
   "description": "A Headless Vending Machine API Implementation",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +13,19 @@
   "dependencies": {
     "nestjs": "^0.0.1",
     "prisma": "^4.9.0"
-  }
+  },
+  "devDependencies": {
+    "prettier": "^2.8.3",
+    "husky": "^8.0.3",
+    "eslint": "^8.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
+  "rootDir": "src",
+  "testRegex": ".*\\.spec\\.ts$"
 }
