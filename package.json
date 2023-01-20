@@ -1,0 +1,16 @@
+{
+  "name": "headless-vending-machine-api",
+  "version": "1.0.0",
+  "description": "A Headless Vending Machine API Implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nestjs": "^0.0.1",
+    "prisma": "^4.9.0"
+  }
+}

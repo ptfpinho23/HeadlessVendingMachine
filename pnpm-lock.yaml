@@ -1,0 +1,29 @@
+lockfileVersion: 5.4
+
+specifiers:
+  nestjs: ^0.0.1
+  prisma: ^4.9.0
+
+dependencies:
+  nestjs: 0.0.1
+  prisma: 4.9.0
+
+packages:
+
+  /@prisma/engines/4.9.0:
+    resolution: {integrity: sha512-t1pt0Gsp+HcgPJrHFc+d/ZSAaKKWar2G/iakrE07yeKPNavDP3iVKPpfXP22OTCHZUWf7OelwKJxQgKAm5hkgw==}
+    requiresBuild: true
+    dev: false
+
+  /nestjs/0.0.1:
+    resolution: {integrity: sha512-LJTf2zDRtWE69B6R2DUW6/LCftgVOq3kp3aqxPsB0eei8OX+lW2RFjzREZWRL1GUD/jGdBSMhM3Q5YWLC2uHNg==}
+    dev: false
+
+  /prisma/4.9.0:
+    resolution: {integrity: sha512-bS96oZ5oDFXYgoF2l7PJ3Mp1wWWfLOo8B/jAfbA2Pn0Wm5Z/owBHzaMQKS3i1CzVBDWWPVnOohmbJmjvkcHS5w==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 4.9.0
+    dev: false
