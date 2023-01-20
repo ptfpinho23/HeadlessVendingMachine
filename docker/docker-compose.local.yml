@@ -36,6 +36,14 @@ services:
       retries: 40
     networks:
       - vending_api
+  redis_cluster:
+    image: redis:7.0.8
+    container_name: redis_cluster
+    restart: on-failure
+    ports:
+      - "6380:6379"
+    networks:
+      - vending_api
 
 volumes:
   pgdata:
