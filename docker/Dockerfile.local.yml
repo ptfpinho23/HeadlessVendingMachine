@@ -13,10 +13,8 @@ RUN npm i -g npm@latest; \
     mkdir -p /usr/local/share/pnpm &&\
     export PNPM_HOME="/usr/local/share/pnpm" &&\
     export PATH="$PNPM_HOME:$PATH"; \
-    pnpm bin -g
+    pnpm bin -g && pnpm install
 
-# Install deps
-RUN pnpm install
 
-ENTRYPOINT [ "pnpm", "run", "start:debug" ]
+ENTRYPOINT [ "pnpm", "run", "start:debug" ] 
 
