@@ -12,14 +12,15 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
+    "bootstrap:local": "pnpm migrations && pnpm start:debug",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" ",
-    "lint:fix":"eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "migrations": "prisma migrate dev",
     "prisma:schema:gen": "prisma generate",
     "prisma:schema:validate": "prisma validate",
     "prisma:schema:format": "prisma format",
     "prisma:schema:deploy": "prisma db push",
-    "prepare": "husky install && pnpm run prisma:schema:gen"
+    "prepare": "husky install && pnpm prisma:schema:gen"
   },
   "keywords": [],
   "author": "",
@@ -32,14 +33,15 @@
     "@nestjs/swagger": "^6.1.4",
     "@prisma/client": "^4.9.0",
     "bcrypt": "^5.1.0",
-    "cache-manager": "^5.1.4",
-    "cache-manager-redis-store": "^3.0.1",
+    "cache-manager": "4.1.0",
+    "cache-manager-redis-store": "2.0.0",
     "install": "^0.13.0",
     "joi": "^17.7.0",
     "nestjs": "^0.0.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+    "redis": "^4.5.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "winston": "^3.8.2"
@@ -51,6 +53,7 @@
     "@nestjs/testing": "^9.2.1",
     "@types/bcrypt": "^5.0.0",
     "@types/cache-manager": "^4.0.2",
+    "@types/cache-manager-redis-store": "^2.0.1",
     "@types/express": "^4.17.15",
     "@types/jest": "^29.2.6",
     "@types/joi": "^17.2.3",
@@ -94,7 +97,7 @@
       "json",
       "ts"
     ],
-    "rootDir": ".",
+    "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
