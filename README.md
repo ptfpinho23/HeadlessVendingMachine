@@ -57,3 +57,9 @@ TODO
 ## Versioning
 
 TODO
+
+
+## TODO
+
+- Map Specific Error Codes
+- Redis Encryption - Transit & Rest
