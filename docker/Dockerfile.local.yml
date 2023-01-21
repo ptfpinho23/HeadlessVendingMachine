@@ -15,6 +15,5 @@ RUN npm i -g npm@latest; \
     export PATH="$PNPM_HOME:$PATH"; \
     pnpm bin -g && pnpm install
 
-
-ENTRYPOINT [ "pnpm", "run", "start:debug" ] 
+ENTRYPOINT [ "pnpm", "bootstrap:local"] 
 
