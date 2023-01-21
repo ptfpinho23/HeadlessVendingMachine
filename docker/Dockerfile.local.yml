@@ -1,23 +1,22 @@
-FROM node:16 AS builder
+FROM node:17
 
 # Create app directory
 WORKDIR /app
 
 COPY . .
 
-# Install app dependencies
 RUN npm i -g npm@latest; \
-    # Install pnpm
+    # Install & Setup pnpm
     npm install -g pnpm; \
     pnpm --version; \
     pnpm setup; \
     mkdir -p /usr/local/share/pnpm &&\
     export PNPM_HOME="/usr/local/share/pnpm" &&\
     export PATH="$PNPM_HOME:$PATH"; \
-    pnpm bin -g &&\
-    # Install dependencies
-    pnpm install
+    pnpm bin -g
 
+# Install deps
+RUN pnpm install
 
-ENTRYPOINT [ "npm", "run", "start:debug" ]
+ENTRYPOINT [ "pnpm", "run", "start:debug" ]
 

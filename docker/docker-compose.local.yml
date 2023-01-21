@@ -6,26 +6,29 @@ services:
       context: ../
       dockerfile: ./docker/Dockerfile.local.yml
     ports:
-      - 3000:3000
+      - ${SERVER_PORT:-8000}:${SERVER_PORT-8000}
+      # debug port
       - 9229:9229
     depends_on:
       - postgres
+      - redis
     env_file:
       - ../.env
-    networks:
-      - vending_api
     volumes:
       - ../:/app
+    networks:
+      - vending_api
   postgres:
     image: postgres:14
+    container_name: postgres
     environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_HOST: ${DB_HOST:-postgres}
+      POSTGRES_PORT: ${DB_PORT:-5432}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-postgres}
     ports:
-      - ${POSTGRES_PORT:-5432}:5432
+      - ${DB_PORT:-5432}:${DB_PORT:-5432}
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: always
@@ -34,14 +37,19 @@ services:
       interval: 2s
       timeout: 3s
       retries: 40
+    env_file:
+      - ../.env
     networks:
       - vending_api
-  redis_cluster:
+
+  redis:
     image: redis:7.0.8
-    container_name: redis_cluster
+    container_name: redis
     restart: on-failure
     ports:
-      - "6380:6379"
+      - ${REDIS_PORT:-6379}:${REDIS_PORT:-6379}
+    env_file:
+      - ../.env
     networks:
       - vending_api
 
