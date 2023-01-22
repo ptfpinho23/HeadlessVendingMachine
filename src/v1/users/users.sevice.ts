@@ -134,7 +134,10 @@ export class UsersService {
       const user = await this.usersRepository.getUserById(userId);
 
       if (!user) {
-        return Promise.reject(new NotFoundException());
+        return Response.withoutData(
+          HttpStatus.NOT_FOUND,
+          `Could not find user - ${userId}`,
+        );
       }
       // success
       return Response.withData(
