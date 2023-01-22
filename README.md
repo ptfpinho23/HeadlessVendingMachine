@@ -71,8 +71,9 @@ TODO
 
 ## TODO
 
-- Map Specific Error Codes
-- Redis Encryption - Transit & Rest
-- E2E + integration testing
-- Load testing
-- Admin User Implementation
+- Map Specific Error Codes;
+- Redis Encryption - Transit & Rest;
+- E2E + integration testing;
+- Load testing;
+- Admin User Implementation.
+- Transaction Ledger
