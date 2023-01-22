@@ -71,13 +71,13 @@ export class PurchaseService {
       const changeInCoins: number[] = changeCalculator(AVAILABLE_COINS, change);
 
       // decrease product Amount available
-      await this.productsRepository.decreaseProductStock(
-        params.productId,
-        params.amountOfProduct,
-      );
-
-      // reset deposit - mimick vending machine behaviour
-      await this.usersRepository.resetDeposit(userId);
+      await Promise.all([
+        await this.productsRepository.decreaseProductStock(
+          params.productId,
+          params.amountOfProduct,
+        ),
+        await this.usersRepository.resetDeposit(userId)
+      ])
 
       // success
       return Response.withData(
