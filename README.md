@@ -16,9 +16,7 @@ This repository contains all the code related to the headless vending machine AP
 ##### Dev Environment
 
 1. Copy the `.envtemplate` to `.env`and fill out all the environment variables
-1. Install Dependencies ` sh config/local/scripts/start.sh `
-1. Start Docker Containers from the root of the project `sh config/dev/scripts/start.sh`
-1. After this, the API url will be shown in the Outputs session in the console as HTTP_SAT_API:
+2. Start Docker Containers from the root of the project `sh config/dev/scripts/start.sh`
 
 
 ### Usage
@@ -32,7 +30,6 @@ TODO
 
 ### Documentation
 
-- Swagger Specification -> `/api/v1/docs`
 - Postman Collection in `/docs` dir
 
 
