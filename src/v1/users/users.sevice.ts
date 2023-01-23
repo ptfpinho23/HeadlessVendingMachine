@@ -1,8 +1,7 @@
 import {
   HttpStatus,
   Injectable,
-  InternalServerErrorException,
-  NotFoundException,
+  InternalServerErrorException
 } from '@nestjs/common';
 import { Response } from '../../common/response';
 import logger from '../../utils/logger';
