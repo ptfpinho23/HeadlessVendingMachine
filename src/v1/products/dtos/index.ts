@@ -5,7 +5,7 @@ export class CreateProductDto {
 }
 
 export class UpdateProductDto {
-  name?: string;
+  productName?: string;
   cost?: number;
   amountAvailable?: number;
 }
@@ -23,5 +23,6 @@ export class ProductEgressDto {
     public id: string,
     public productName: string,
     public ammountAvailable: number,
+    public price: number
   ) {}
 }

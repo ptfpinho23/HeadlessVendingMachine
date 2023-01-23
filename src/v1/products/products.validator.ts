@@ -130,7 +130,7 @@ export class ProductsValidator {
         // Joi Validation
         const joiSchema = joi
           .object({
-            name: joi.string().min(3).label('Product Name'),
+            productName: joi.string().min(3).label('Product Name'),
             cost: joi.number().positive().min(1).label('Cost'),
             amountAvailable: joi
               .number()

@@ -61,6 +61,7 @@ export class ProductsService {
             product.id,
             product.productName,
             product.amountAvailable,
+            product.cost
           );
         }),
       );
@@ -148,6 +149,7 @@ export class ProductsService {
           product.id,
           product.productName,
           product.amountAvailable,
+          product.cost
         ),
       );
     } catch (error) {
