@@ -172,7 +172,7 @@ export class UsersController {
   @Role(Roles.buyer)
   @UseGuards(RolesGuard)
   @UseGuards(AuthGuard('jwt'))
-  @Get('/reset')
+  @Post('/reset')
   @ApiOperation({
     summary: 'Used to reset a buyers deposits (coins)',
   })
