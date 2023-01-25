@@ -84,9 +84,9 @@ export class PurchaseService {
         HttpStatus.CREATED,
         'Thanks for your Purchase!',
         {
-          'Sub Total': subTotal,
-          'Product Purchased': product.productName,
-          'Your change': change,
+          sub_total: subTotal,
+          product: product.productName,
+          total_change: change,
           Change: changeInCoins,
         },
       );
