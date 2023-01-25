@@ -43,7 +43,7 @@ services:
       - vending_api
 
   redis:
-    image: redis:7.0.8
+    image: redis:latest
     container_name: redis
     restart: on-failure
     ports:
